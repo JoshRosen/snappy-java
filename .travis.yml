@@ -6,10 +6,13 @@ jdk:
   - openjdk7
   - oraclejdk7
 
-branches:
-  only:
-    - master
-    - develop
+#branches:
+#  only:
+#    - master
+#    - develop
 
-script: ./sbt test
+script:
+  - "./sbt clean coverage test"
+  - "./sbt coverageAggregate"
 
+after_success: "./sbt coveralls"
